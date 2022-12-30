@@ -1,0 +1,112 @@
+_format_version: "2.1"
+_transform: true
+
+services:
+# - name: userClientService
+#   url: http://192.168.11.13:5000/user-service/v1/users
+#   routes:
+#   - name: v1-user-apis
+#     paths:
+#     - /v1/users
+- name: externalService
+  url: http://192.168.10.154:6000/external/
+  routes: 
+  - name: external-apis
+    paths: 
+    - /external
+# - name: DoubtUrl
+#   url: https://cd98fd3277.pwdev.link
+#   routes:
+#   - name: doubt-apis
+#     paths:
+#     - /
+- name: v1ClientService
+  url: http://192.168.10.154:6000/v1/
+  routes:
+  - name: v1-client-apis
+    paths:
+    - /v1
+- name: v1AdminService
+  url: http://192.168.10.154:6000/v1/admin/
+  routes:
+  - name: v1-admin-apis
+    paths:
+    - /v1/admin
+- name: v2ClientService
+  url: http://192.168.10.154:6000/v2/
+  routes:
+  - name: v2-client-apis
+    paths:
+    - /v2
+- name: v2AdminService
+  url: http://192.168.10.154:6000/v2/admin/
+  routes:
+  - name: v2-admin-apis
+    paths:
+    - /v2/admin
+- name: v3ClientService
+  url: http://192.168.10.154:6000/v3/
+  routes:
+  - name: v3-client-apis
+    paths:
+    - /v3
+- name: v3AdminService
+  url: http://192.168.10.154:6000/v3/admin/
+  routes:
+  - name: v3-admin-apis
+    paths:
+    - /v3/admin
+plugins:
+- name: custom-auth
+  service: v1ClientService
+  config: 
+    jwt_verification_endpoint: http://192.168.10.154:8002/v1/auth/jwt-verify-check
+    token_header: Authorization
+- name: custom-auth
+  service: v2ClientService
+  config: 
+    jwt_verification_endpoint: http://192.168.10.154:8002/v1/auth/jwt-verify-check
+    token_header: Authorization
+- name: custom-auth
+  service: v3ClientService
+  config: 
+    jwt_verification_endpoint: http://192.168.10.154:8002/v1/auth/jwt-verify-check
+    token_header: Authorization
+# - name: custom-auth
+#   service: userClientService
+#   config: 
+#     jwt_verification_endpoint: http://192.168.11.13:8002/v1/auth/jwt-verify-check
+#     token_header: Authorization
+
+- name: cors
+  service: v1ClientService
+  config: 
+    max_age: 3600
+- name: cors
+  service: externalService
+  config: 
+    max_age: 3600
+# - name: cors
+#   service: userClientService
+#   config: 
+#     max_age: 3600
+- name: cors
+  service: v1AdminService
+  config: 
+    max_age: 3600
+- name: cors
+  service: v2ClientService
+  config: 
+    max_age: 3600
+- name: cors
+  service: v2AdminService
+  config: 
+    max_age: 3600
+- name: cors
+  service: v3ClientService
+  config: 
+    max_age: 3600
+- name: cors
+  service: v3AdminService
+  config: 
+    max_age: 3600

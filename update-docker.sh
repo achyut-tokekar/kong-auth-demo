@@ -2,7 +2,7 @@
 
 read -p "Enter container ID or name: "  container
 #read -p "Enter working subdirectory /usr/local/share/lua/5.1/kong/plugins/"  dir
-dir="custom-auth" 
+read -p "Enter plugin's folder name: "  dir
 
 docker exec -it --user root $container mkdir /usr/local/share/lua/5.1/kong/plugins/$dir
 echo "directory created or verified"
