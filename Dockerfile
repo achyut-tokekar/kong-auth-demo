@@ -65,11 +65,11 @@
 
 # CMD ["kong", "docker-start"]
 
-
-FROM ubuntu:latest as builder
-RUN apk add --no-cache git
-RUN mkdir /jwt2header
-RUN git clone https://github.com/yesinteractive/kong-jwt2header.git /jwt2header
+FROM ubuntu:18.04 as builder
+RUN apt update
+RUN apt install -y git
+RUN mkdir /custom-auth
+RUN git clone https://github.com/achyut-tokekar/kong-auth-demo.git /custom-auth
 
 FROM kong:ubuntu
 USER root

@@ -2,11 +2,11 @@ local http = require "resty.http"
 local cjson = require "cjson"
 -- local Storage = require "kong.plugins.custom-auth.storage"
 
-local redis_connector, err = require("resty.redis.connector")
+-- local redis_connector, err = require("resty.redis.connector")
 
-kong.log(redis_connector, "REDIS CONNECTOR");
+-- kong.log(redis_connector, "REDIS CONNECTOR");
 
-kong.log(err, "ERROR FROM REDIS CONNECTOR")
+-- kong.log(err, "ERROR FROM REDIS CONNECTOR")
 
 
 local TokenHandler = {
